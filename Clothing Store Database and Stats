@@ -1,0 +1,25 @@
+--Create a clothing store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER, price INTEGER, category TEXT);
+
+INSERT INTO store VALUES (1, "Dunks", 2, 100, "Shoes");
+INSERT INTO store VALUES (2, "Graphic Tee", 15, 30, "Clothing");
+INSERT INTO store VALUES (3, "Sweats", 10, 60, "Clothing");
+INSERT INTO store VALUES (4, "Yankees Hat", 50, 25, "Accessories");
+INSERT INTO store VALUES (5, "Sweetheart Necklace", 10, 50, "Accessories");
+INSERT INTO store VALUES (6, "Birkin", 2, 20000, "Rare Items");
+INSERT INTO store VALUES (7, "Ring", 10, 20, "Accessories");
+INSERT INTO store VALUES (8, "Watch", 2, 200, "Accessories");
+INSERT INTO store VALUES (9, "Socks", 30, 15, "Accessories");
+INSERT INTO store VALUES (10, "Scarf", 15, 30, "Accessories");
+INSERT INTO store VALUES (11, "Sweater", 60, 70, "Clothing");
+INSERT INTO store VALUES (12, "Leggings", 70, 90, "Clothing");
+INSERT INTO store VALUES (13, "Scrunchie", 100, 10, "Accessories");
+INSERT INTO store VALUES (14, "Boots", 15, 100, "Shoes");
+INSERT INTO store VALUES (15, "Hoodie", 100, 50, "Clothing");
+
+--Display the database ordered by price
+SELECT * FROM store ORDER BY price;
+
+--Display the number of items in each category
+SELECT category, SUM(quantity) FROM Store GROUP BY category ORDER BY SUM(quantity);
