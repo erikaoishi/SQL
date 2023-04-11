@@ -1,0 +1,32 @@
+--Creating a table of artists with their debut date, genre id, nationality id
+CREATE TABLE artists (id INTEGER PRIMARY KEY, name TEXT, debut INTEGER, genre_id INTEGER, nationality_id INTEGER);
+
+INSERT INTO artists VALUES (1, "Paramore", 2004, 1, 1);
+INSERT INTO artists VALUES (2, "Elliott Smith", 1991,2,1);
+INSERT INTO artists VALUES (3, "beabadoobee", 2017,3,2);
+INSERT INTO artists VALUES (4, "Baby Keem", 2017,4,1);
+INSERT INTO artists VALUES (5, "Ski Mask the Slump God", 2014,4,1);
+INSERT INTO artists VALUES (6, "Daniel Caesar", 2014,5,3);
+INSERT INTO artists VALUES (7, "Joji", 2015,5,4);
+
+--Creating a table listing out the various genres that would map to the artists from the artists table
+CREATE TABLE genres (id INTEGER PRIMARY KEY, genre_id INTEGER, genre_name TEXT);
+
+INSERT INTO genres VALUES (1, 1, "pop punk");
+INSERT INTO genres VALUES (2, 2, "indie folk");
+INSERT INTO genres VALUES (3,3, "indie rock");
+INSERT INTO genres VALUES (4,4, "hip hop");
+INSERT INTO genres VALUES (5,5, "r&b");
+
+--Creating a table listing out the various nationalities that would map to the artists from the artists table
+CREATE TABLE nationalities (id INTEGER PRIMARY KEY, nationality_id INTEGER, nationality_name TEXT);
+
+INSERT INTO nationalities VALUES (1, 1, "American");
+INSERT INTO nationalities VALUES (2, 2, "British");
+INSERT INTO nationalities VALUES (3,3, "Canadian");
+INSERT INTO nationalities VALUES (4,4, "Japanese");
+
+--Creating a table that lists the name, debut, genre, and nationality of various artists
+SELECT name, debut, genres.genre_name, nationalities.nationality_name FROM artists
+JOIN genres ON artists.genre_id=genres.genre_id
+JOIN nationalities ON artists.nationality_id=nationalities.nationality_id;
