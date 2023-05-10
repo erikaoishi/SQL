@@ -1,0 +1,28 @@
+# Here I am looking at a dataset called chinook, which represents a digital media store and includes tables for
+artists, albums, media tracks, invoices, and customers.
+
+--What was the most number of sales any one song had in 2009?
+SELECT COUNT(*) FROM invoice_items
+LEFT JOIN invoices a ON a.InvoiceId=invoice_items.invoiceid
+GROUP BY Trackid
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
+--Show the total sales made by each sales agent.
+WITH customer_totals AS (
+SELECT invoice_items.invoiceid, unitprice*quantity AS totalprice,invoices.customerid,customers.SupportRepId, employees.firstname, employees.lastname 
+FROM invoice_items
+JOIN invoices ON invoice_items.invoiceid=invoices.InvoiceId
+JOIN customers ON invoices.customerid=customers.CustomerId
+JOIN employees ON customers.supportrepid=employees.EmployeeId)
+
+SELECT FirstName, LastName, SUM(totalprice) AS revenue, supportrepid FROM customer_totals
+GROUP BY supportrepid;
+
+--What songs & artists are on the Grunge playlist?
+SELECT tracks.name AS Song, artists.name AS Artist FROM tracks
+JOIN playlist_track ON playlist_track.trackid=tracks.trackid
+JOIN playlists ON playlists.PlaylistId=playlist_track.PlaylistId
+JOIN albums ON tracks.albumid=albums.albumid
+JOIN artists ON albums.ArtistId=artists.artistid
+WHERE playlists.Name='Grunge';
