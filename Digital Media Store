@@ -1,4 +1,4 @@
-# Here I am looking at a dataset called chinook, which represents a digital media store and includes tables for
+--Here I am looking at a dataset called chinook, which represents a digital media store and includes tables for
 artists, albums, media tracks, invoices, and customers.
 
 --What was the most number of sales any one song had in 2009?
